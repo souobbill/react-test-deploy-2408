@@ -12,7 +12,7 @@ function App() {
           TEST DE L'APPLICATION <code>,REACT_TEST </code>.
         </p>
         <img src={logiuc} className="" alt="log" />
-        <img src={logo} className="App-logo" alt="logo" />
+        
         <img src={log3iac} className="" alt="logo" />
         <p>
           FORMATION <code>,CERTIFICATION </code> POUR VOUS.
@@ -20,6 +20,7 @@ function App() {
         <p>
           ###<code> Version 1.1 </code> ###
         </p>
+        <img src={logo} className="App-logo" alt="logo" />
         <a
           className="App-link"
           href=""
