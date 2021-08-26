@@ -1,34 +1,44 @@
-import logo from './logo.png';
-import log3iac from './log3iac.png';
-import logiuc from './logiuc.jpg';
-import './App.css';
+import React, { useRef, useEffect } from 'react';
+import { useLocation, Switch } from 'react-router-dom';
+import AppRoute from './utils/AppRoute';
+import ScrollReveal from './utils/ScrollReveal';
+import ReactGA from 'react-ga';
 
-function App() {
+// Layouts
+import LayoutDefault from './layouts/LayoutDefault';
+
+// Views 
+import Home from './views/Home';
+
+// Initialize Google Analytics
+ReactGA.initialize(process.env.REACT_APP_GA_CODE);
+
+const trackPage = page => {
+  ReactGA.set({ page });
+  ReactGA.pageview(page);
+};
+
+const App = () => {
+
+  const childRef = useRef();
+  let location = useLocation();
+
+  useEffect(() => {
+    const page = location.pathname;
+    document.body.classList.add('is-loaded')
+    childRef.current.init();
+    trackPage(page);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-
-      <p>
-          TEST DE L'APPLICATION <code>,REACT_TEST </code>.
-        </p>
-        <img src={logiuc} className="" alt="log" />
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          FORMATION <code>,CERTIFICATION </code> POUR VOUS.
-        </p>
-        <p>
-          ###<code> Version 1.1 </code> ###
-        </p>
-        <a
-          className="App-link"
-          href=""
-          target="_blank"
-          rel="Wouri Teck Link"
-        >
-          Welcome To WOURI_TECH
-        </a>
-      </header>
-    </div>
+    <ScrollReveal
+      ref={childRef}
+      children={() => (
+        <Switch>
+          <AppRoute exact path="/" component={Home} layout={LayoutDefault} />
+        </Switch>
+      )} />
   );
 }
 
