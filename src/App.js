@@ -13,6 +13,7 @@ function App() {
         </p>
         <img src={logiuc} className="" alt="log" />
         <img src={logo} className="App-logo" alt="logo" />
+        <img src={log3iac} className="" alt="log" />
         <p>
           FORMATION <code>,CERTIFICATION </code> POUR VOUS.
         </p>
